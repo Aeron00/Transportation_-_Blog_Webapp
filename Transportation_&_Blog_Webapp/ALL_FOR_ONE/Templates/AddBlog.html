@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Add blog |{% endblock title %}
+
+{% block body %}
+
+<div class="container">
+    <form action="/AddBlog" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="py-3">
+            <label for="Publisher" class="form-label">Publisher Name</label>
+            <input type="text" name="Publisher" id="Publisher" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="Title" class="form-label">Title</label>
+            <input type="text" name="Title" id="Title" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="Desc" class="form-label">Description</label>
+            <textarea name="Desc" id="Desc" rows="5" class="form-control"></textarea>
+        </div>        
+        <div class="mb-3">
+            <label for="File" class="form-label">Image</label>
+            <input type="file" name="File" id="File" accept="image/*" class="form-control">
+        </div> 
+        <div class="mb-3">
+            <label for="File" class="form-label">Audio</label>
+            <input type="file" name="File" id="File" accept="audio/*" class="form-control">
+        </div> 
+        <div class="mb-3"><label for="File" class="form-label">Video</label>
+            <input type="file" name="File" id="File" accept="video/*" class="form-control">
+        </div> 
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock body %}

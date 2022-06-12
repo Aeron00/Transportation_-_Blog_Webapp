@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}{{Data.Name}} |{% endblock title %}
+
+{% block head %}
+<style>
+    body {
+      background-image: url(/static/Images/mountain.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+</style>
+{% endblock head %}
+
+{% block body %}
+
+<div class="container p-5 text-center text-white">
+    <ul class="nav flex-column">
+        <li class="nav-item my-1"><img src="{{Data.Pro_Img.url}}" alt="Profile Photo" width="10%" style="border-radius: 50px;"></li>
+        <li class="nav-item mt-1"><h4>{{Data.Name}}</h4></li>
+        <li class="nav-item mb-1">Profession</li>
+        <li class="nav-item my-1"><h3>About me</h3></li>
+        <li class="nav-item my-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nesciunt eligendi quisquam consequatur, repellat officia nisi et fuga. Architecto at molestias facere. Esse iure cumque, ratione tenetur suscipit rerum consequatur earum, qui vitae ut natus vel commodi similique iste soluta.</li>
+        <li class="nav-item my-1">{{Data.Email}}</li>
+        <li class="nav-item my-1">Password:- {{Data.Password}}</li>
+        <li class="nav-item my-1">{{Data.Address}}</li>
+    </ul>
+
+    <!-- Button trigger modal --> <hr>
+    <Button type="button" class="btn btn-outline-info" data-bs-toggle="modal"
+        data-bs-target="#staticBackdrop">Edit Profile</Button>
+</div>
+
+<!-- Modal -->
+<form action="/Edit" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel"> Your Details </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label" for="Pro_Img"><b>Profile Picture</b></label>
+                        <input type="file" class="form-control opacity-75" id="Pro_Img" name="Pro_Img" accept="image/*" required 
+                        value="{{Data.Pro_Img.url}}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="Name"><b>Name</b></label>
+                        <input type="text" class="form-control opacity-75" id="Name" name="Name" required
+                            value="{{Data.Name}}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="Email"><b>Email</b></label>
+                        <input type="email" class="form-control opacity-75" id="Email" name="Email" required
+                            value="{{Data.Email}}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="Password"><b>Password</b></label>
+                        <input type="Password" class="form-control opacity-75" id="Password" name="Password" required
+                            value="{{Data.Password}}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="Phone"><b>Phone Number</b></label>
+                        <input type="Phone" class="form-control opacity-75" id="Phone" name="Phone" required
+                            value="{{Data.Phone}}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Address" class="form-label"><b>Address</b></label>
+                        <textarea class="form-control opacity-75" id="Address" rows="5" name="Address" required
+                            value="{{Data.Address}}"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+{% endblock body %}

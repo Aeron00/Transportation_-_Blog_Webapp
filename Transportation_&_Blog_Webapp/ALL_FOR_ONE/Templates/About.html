@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}About Us |{% endblock title %}
+
+{% block head %}
+
+<style>
+    h1, h2, .p {
+        text-align: center;
+    }
+</style>
+
+{% endblock head %}
+
+{% block body %}
+<div
+    style="background-image: url(/static/Images/hall.jpg); background-size: cover; background-repeat: no-repeat; height: 90%; color: white;text-align: center; margin-top: -5%;">
+    <h1 style="padding-top: 20%;">About Us</h1>
+    <p>Meet the amazing team behind this project and find out more about how we work</p>
+</div>
+<div class="container">
+    <div class="py-5">
+        <h1>Simpler. Smarter. Faster</h1>
+        <p class="p">This Project idea of combining all public transportation information at one place is very good.
+            <br>You can trust us and we will provide you accurate services
+        </p>
+    </div>
+    <h2>We have many advantages</h2>
+    <div class="row">
+        <div class="col-6 p-5">
+            <img src="/static/Images/laptop.jpg" style="box-shadow: 3px 3px 7px 2px;" alt="Image" width="100%">
+        </div>
+        <div class="col-6 p-5">
+            <h6>One for all</h6>
+            <p>You don't have to go and search diffrent websites for inquiries, we gives you diffrent types public transportation's information</p>
+            <h6>Saves your time</h6>
+            <p>As you gets information of diffrent transport at one place you saves a lot of your time</p>
+            <h6>Easy to use</h6>
+            <p>Easy to use because you just have to enter details of place where you want to go and you gets diffrent options shown</p>
+        </div>
+    </div>
+    <div class="row py-4">
+        <div class="col-4">
+            <img src="static/Images/desk.jpg" alt="Images" width="100%" style="box-shadow: 3px 3px 7px 2px;" >
+        </div>
+        <div class="col-4">
+            <img src="static/Images/office.jpg" alt="" width="100%" style="box-shadow: 3px 3px 7px 2px;" >
+        </div>
+        <div class="col-4">
+            <img src="static/Images/items.jpg" alt="" width="100%" style="box-shadow: 3px 3px 7px 2px;" >
+        </div>
+    </div>
+    <div class="pb-5">
+        <h2>Want to work with us?</h2>
+        <p class="p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae animi
+            reprehenderit tempore
+            <br>distinctio, delectus ut a sunt possimus corporis maiores harum at earum pariatur, veniam laborum quae
+            eos? Architecto, animi?
+        </p>
+
+        <form action="" method="POST">
+            <div class="row pt-2">
+                <div class="col-3">
+                    <label for="Name" class="form-label"> First Name</label>
+                    <input type="text" id="Name" class="form-control" placeholder="First Name..."
+                        style="border-radius: 20px;">
+                </div>
+                <div class="col-3">
+                    <label for="Email" class="form-label"> Your Email</label>
+                    <input type="email" id="Email" class="form-control" placeholder="Your Email..."
+                        style="border-radius: 20px;">
+                </div>
+                <div class="col-3">
+                    <label for="Speciality" class="form-label"> Speciality</label>
+                    <input type="button" id="Speciality" class="form-control" style="border-radius: 20px;">
+                </div>
+                <div class="col-3">
+                    <button type="submit" class="btn btn-secondary"
+                        style="border-radius: 20px; margin-top: 9%; margin-left: 20%;">Send Request</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock body %}

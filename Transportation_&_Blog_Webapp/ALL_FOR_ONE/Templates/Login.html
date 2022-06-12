@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Login |{% endblock title %}
+
+{% block head %}
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        color: darkcyan;
+        background-image: url(/static/Images/road.jpg);
+        background-size: cover;
+    }
+
+    hr {
+        border: 1px solid #f1f1f1;
+        margin-bottom: 20px;
+    }
+
+    a {
+        color: dodgerblue;
+    }
+</style>
+{% endblock head %}
+
+
+{% block body %}
+
+    <form method="POST" action="Login">
+        {% csrf_token %}
+        <div class="container pt-4">
+            <h1 class="text-center">Login Here</h1>
+            <p>Please fill this form to login</p>
+            <hr><br>
+
+            <div class="mb-3">
+                <label class="form-label" for="Email"><b>Username</b></label>
+                <input type="email" class="form-control opacity-50" id="Email" name="Email" placeholder="Enter your Email" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="Password"><b>Password</b></label>
+                <input type="Password" class="form-control opacity-50" id="Password" name="Password" placeholder="Enter Password" required>
+            </div>
+
+            <center><br><button class="btn btn-outline-warning" type="submit">Login</button><br></center>
+            <div class="text-center">
+                <br><a href="/Forgotpass">Forgot Password ?</a>
+                <br><a href="/Signup">Click here</a> for Registeration
+            </div>
+
+        </div>
+    </form>
+{% endblock body %}

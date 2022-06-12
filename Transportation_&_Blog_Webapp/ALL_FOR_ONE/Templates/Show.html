@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+ 
+{% block title %}DATA |{% endblock title %}
+
+{% block body %}
+<center>
+    <h1> YOUR TRAIN DETAILS </h1>
+    
+    <h2> Train Name : : {{data.Name}} <br>
+        Train number : {{data.Number}} <br>
+        Destination : {{data.Destination}}
+        
+    </h2>
+</center>
+
+{% endblock body %}

@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}blog |{% endblock title %}
+
+{% block body %}
+
+
+<div class="container-fluid py-4">
+  <div class="row">
+    <div class="col-6">
+      <h1 class="pb-4">blog</h1>
+    </div>
+    <div class="col-1 offset-5">
+      {% if 'is_login' in request.session %}
+      <a href="/AddBlog" class="btn btn-outline-warning">Post</a>
+      {% else %}
+      <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Post</button>
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Warning</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              You have to login first to post your blog
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <a href="/Login" class="btn btn-primary">Login First</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+
+  {% for i in Blog %}
+  <div class="row">
+    <div class="col-8">
+      <video src="{{i.File.url}}" width="100%" type="video/mp4" controls autoplay></video>
+      <h2 class="card-title">{{i.Title}}</h2>
+      <div class="row">
+        <p class="col-6">{{i.Date}}</p>
+        <p class="col-6"> like dislike share save </p>
+      </div>
+      <hr>
+      profile image <h2>{{i.U_Name}}</h2>
+      <div class="card-text" id="readmore" style="display: none;">{{i.Detail}}
+        <button onclick="readmore()" class="btn btn-primary">&larr; Show Less</button>
+      </div>
+      <div class="card-text" id="readless" style="display: inline;">
+        {% load custom_tags %}
+        {% get_halfContent i.Detail as half_content %}
+        {{ half_content }}
+        <button onclick="readless()" class="btn btn-primary">Show More &rarr;</button>
+      </div class="col-3">
+      <hr>
+      <h5 style="display: inline;">comments</h5> <h3 style="display: inline;" onclick="comments()" id="downicon">&darr;</h3> 
+      <h3 style="display: none;" onclick="nocomments()" id="upicon">&uarr;</h3>
+      <div style="display: none;" id="comments">
+        {% for j in comments %}
+        {% if j.Blog_id_id|stringformat:'s' == i.id|stringformat:'s' %}
+        <p> {{j.comment}} {{j.U_id}}</p>
+        {% endif %}
+        {% endfor %}
+      </div>
+      <div class="row">
+        <div class="col-8">
+          <form action="comments" method="POST">
+            {% csrf_token %}
+            <input type="text" name="blog_id" value="{{i.id}}" style="display: none;">
+            <input type="text" class="form-control" placeholder="Add a comment..." name="comment">
+        </div>
+        <div class="col-4">
+          {% if 'is_login' in request.session %}
+          <button class="btn btn-outline-dark" type="submit">ADD</button>
+          {% else %}
+          <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">ADD</button>
+          {% endif %}
+          </form>
+        </div>
+      </div><hr>
+    </div>
+
+    <div class="col-4">
+      <img src="{{i.File.url}}" alt="Image" width="100%">
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<script>
+
+  // readmore readless
+
+  var readMore = document.getElementById('readmore')
+  var readLess = document.getElementById('readless')
+  var comment = document.getElementById('comments')
+  var upicon = document.getElementById('upicon')
+  var downicon = document.getElementById('downicon')
+
+  function readmore() {
+    readMore.style.display = 'none'
+    readLess.style.display = 'inline'
+  }
+  function readless() {
+    readLess.style.display = 'none '
+    readMore.style.display = 'inline'
+
+  }
+  function comments(){
+    comment.style.display = 'inline'
+    upicon.style.display = 'inline'
+    downicon.style.display = 'none'
+  }
+  function nocomments(){
+    comment.style.display = 'none'
+    upicon.style.display = 'none'
+    downicon.style.display = 'inline'
+  }
+</script>
+
+{% endblock body %}

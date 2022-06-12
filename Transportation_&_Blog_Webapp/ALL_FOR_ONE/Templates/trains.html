@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+ 
+{% block title %}DATA |{% endblock title %}
+
+{% block body %}
+<center> <h1 class="pt-4"> ALL TRAIN DETAILS </h1> <hr> </center>
+    {% for data in data %}
+    <h2 class="mx-4"> Train Name : : {{data.Name}} <br>
+        Train number : {{data.Number}} <br>
+        Source : {{data.Source}} <br>
+        Destination : {{data.Destination}} <br>
+        Arrival : {{data.ScheduleArrival}} <br>
+        Departure : {{data.ScheduleDeparture}} <br> <hr>
+    </h2>
+    {% endfor %}
+
+
+{% endblock body %}

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Forget Password |{% endblock title %}
+
+{% block head %}
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: rgb(136, 121, 121);
+    }
+
+    hr {
+        border: 1px solid #f1f1f1;
+        margin-bottom: 20px;
+    }
+
+    a {
+        color: dodgerblue;
+    }
+</style>
+{% endblock head %}
+
+
+{% block body %}
+
+<body>
+    <form method="POST" action="Forgotpass">
+        {% csrf_token %}
+        <div class="container pt-4">
+            <h1 class="text-center">Forget Password</h1>
+            <hr><br>
+
+            <div class="mb-3">
+                <label class="form-label" for="Email"><b>Username</b></label>
+                <input type="Email" class="form-control" id="Email" name="Email" placeholder="Enter your Email">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="Password"><b>New Password</b></label>
+                <input type="Password" class="form-control" id="Password" name="Password" placeholder="Enter Password">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="ForPassword"><b>Confirm Password</b></label>
+                <input type="Password" class="form-control" id="Password" name="Password" placeholder="Enter Password">
+            </div>
+
+            <div class="text-center">
+                <br><button class="btn btn-outline-warning" type="submit">Confirm</button><br>
+                <br><a href="/Signup">Click here</a> for Registeration<br><br>
+                Go back to <a href="/Login" class="btn btn-outline-dark">Sign in</a>.</p>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>
+{% endblock body %}
